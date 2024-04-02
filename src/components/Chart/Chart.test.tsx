@@ -1,5 +1,4 @@
 import { render } from "@testing-library/react";
-import { screen } from "@testing-library/dom";
 import Chart from "./";
 import * as X from "../../websocket";
 
@@ -32,13 +31,13 @@ describe("<Chart />", () => {
     expect(X.binanceStream.send).toHaveBeenCalledWith({ id: 1, method: "UNSUBSCRIBE", params: ["btcusdt@kline_1h"] });
     expect(X.binanceStream.send).toHaveBeenCalledWith({ id: 1, method: "SUBSCRIBE", params: ["bnbbtc@kline_1h"] });
   });
-  test("should render chart element properly", () => {
-    render(<Chart symbol={"BTCUSDT"} />);
+  test("should render chart element properly", async () => {
+    const wrapper = render(<Chart symbol={"BTCUSDT"} />);
 
     expect(X.binanceStream.send).toHaveBeenCalledWith({ id: 1, method: "SUBSCRIBE", params: ["btcusdt@kline_1h"] });
     expect(global.fetch).toHaveBeenCalledWith("https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=1d");
 
-    const chart = screen.queryByTestId("tradingview-chart");
+    const chart = await wrapper.findByTestId("tradingview-chart");
 
     expect(chart).not.toBeNull();
   });
