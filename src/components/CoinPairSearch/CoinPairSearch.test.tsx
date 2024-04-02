@@ -3,7 +3,7 @@ import "@testing-library/jest-dom";
 
 import CoinPairSearch from "./";
 
-describe("AppMenu", () => {
+describe("<CoinPairSearch />", () => {
   beforeEach(() => {
     global.fetch = jest.fn(() => {
       return Promise.resolve({
