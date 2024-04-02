@@ -29,3 +29,16 @@
   border-radius: 16px;
   border-radius: 10px 10px;
 }
+
+.trades_container {
+  width: 100%;
+  height: 50vh;
+
+  overflow: auto;
+}
+
+.trades_container_loading {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}

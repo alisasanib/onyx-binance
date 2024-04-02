@@ -1,7 +1,9 @@
 import TextField from "@mui/material/TextField";
+import { CircularProgress } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Pair } from "../../types";
 import styles from "./CoinPairSearch.module.css";
+
 
 interface CoinPairSearchProps {
   onSelectSymbol: (p: string) => void;
@@ -10,6 +12,8 @@ interface CoinPairSearchProps {
 const CoinPairSearch: React.FC<CoinPairSearchProps> = (props) => {
   const [pairs, setPairs] = useState<Pair[]>([]);
   const [allPairs, setAllPairs] = useState<Pair[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+
   const fetchAllPairs = async () => {
     try {
       const response = await fetch("https://api.binance.com/api/v3/ticker/24hr");
@@ -22,14 +26,26 @@ const CoinPairSearch: React.FC<CoinPairSearchProps> = (props) => {
     }
   };
   useEffect(() => {
-    fetchAllPairs();
+    setIsLoading(true);
+    fetchAllPairs().finally(() => {
+      setIsLoading(false);
+    });
   }, []);
   const handleSearchPairCoin = async (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     setPairs(allPairs.filter((p) => p.symbol.includes(e.target.value.toUpperCase())));
   };
+
+  if (isLoading) {
+    return (
+      <div className={`${styles.coinpair_container} ${styles.coinpair_container_loading}`}>
+        <CircularProgress sx={{ color: "#F3BA2F" }} />
+      </div>
+    );
+  }
+
   return (
     <div className={styles.coinpair_container}>
-      <div style={{ position: "sticky", top: 0, background: "rgb(22, 26, 30)" }}>
+      <div className={styles.coinpair_input} style={{ position: "sticky", top: 0, background: "rgb(22, 26, 30)" }}>
         <TextField
           onChange={handleSearchPairCoin}
           id='outlined-search'

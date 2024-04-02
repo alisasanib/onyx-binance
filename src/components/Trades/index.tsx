@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import { CircularProgress } from "@mui/material";
 import { binanceStream } from "../../websocket";
 import { Trade } from "../../types";
 import styles from "./Trades.module.css";
@@ -10,6 +11,7 @@ interface TradesProps {
 const Trades: React.FC<TradesProps> = (props) => {
   const [data, setData] = useState<Trade[]>([]);
   const [symbol, setSymbol] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleMessage = useCallback((m: any) => {
     if (m.e === "trade") {
@@ -37,6 +39,7 @@ const Trades: React.FC<TradesProps> = (props) => {
   useEffect(() => {
     let tradeDestroyer: () => void;
     if (!symbol) return;
+    setIsLoading(true);
 
     const initWebSocket = () => {
       const obj = {
@@ -68,6 +71,9 @@ const Trades: React.FC<TradesProps> = (props) => {
             return { ...d, time: `${hours}:${minutes}:${seconds}` };
           });
         setData(timeUpdated);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
     initWebSocket();
     return () => {
@@ -88,10 +94,16 @@ const Trades: React.FC<TradesProps> = (props) => {
     });
   };
 
+  if (isLoading) {
+    return (
+      <div className={`${styles.trades_container} ${styles.trades_container_loading}`}>
+        <CircularProgress sx={{ color: "#F3BA2F" }} />
+      </div>
+    );
+  }
+
   return (
-    <div
-      className={styles.trades_container}
-      style={{ width: "100%", height: "50vh", overflow: "auto" }}>
+    <div className={styles.trades_container}>
       <div className={styles.trade_title}>Market Trades</div>
       <div
         style={{

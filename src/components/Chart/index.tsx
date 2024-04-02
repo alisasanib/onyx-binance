@@ -10,6 +10,8 @@ import {
 import { debounce } from "lodash-es";
 import { binanceStream } from "../../websocket";
 import { BinanceMessage, HistoricalDataType } from "../../types";
+import { CircularProgress } from "@mui/material";
+import styles from "./Chart.module.css";
 
 interface CandlestickChartProps {
   symbol: string;
@@ -20,6 +22,8 @@ const CandlestickChart: React.FC<CandlestickChartProps> = (props) => {
   const [historicalData, setHistoricalData] = useState<HistoricalDataType[]>([]);
   const [visibleRange, setVisibleRange] = useState<{ from: number; to: number } | null>(null);
   const [symbol, setSymbol] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
   const chartRef: React.MutableRefObject<ISeriesApi<"Candlestick"> | null> = useRef<ISeriesApi<"Candlestick">>(null);
 
   const onRangeChange = useCallback(
@@ -110,8 +114,10 @@ const CandlestickChart: React.FC<CandlestickChartProps> = (props) => {
 
       candlestickSeries?.update(formattedData);
     };
-
-    fetchData();
+    setIsLoading(true);
+    fetchData().finally(() => {
+      setIsLoading(false);
+    });
     initWebSocket();
 
     return () => {
@@ -216,17 +222,19 @@ const CandlestickChart: React.FC<CandlestickChartProps> = (props) => {
     };
   }, []);
 
+  if (isLoading) {
+    return (
+      <div className={`${styles.chart_container} ${styles.chart_container_loading}`}>
+        <CircularProgress sx={{ color: "#F3BA2F" }} />
+      </div>
+    );
+  }
+
   return (
     <div
+      className={styles.chart_container}
       data-testid='tradingview-chart'
       ref={containerRef}
-      style={{
-        marginTop: 30,
-        width: "90%",
-        height: "90vh",
-        display: "flex",
-        justifyContent: "center",
-      }}
     />
   );
 };
