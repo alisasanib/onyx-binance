@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Grid } from "@mui/material";
+import Header from "./components/Header";
 import Chart from "./components/Chart";
 import Trades from "./components/Trades";
 import CoinPairSearch from "./components/CoinPairSearch";
@@ -12,6 +13,7 @@ function App() {
   };
   return (
     <div style={{ display: "flex", flexWrap: "wrap" }}>
+      <Header />
       <Grid
         sx={{ marginTop: 0 }}
         className='content-container'
