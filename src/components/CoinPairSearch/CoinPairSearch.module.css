@@ -1,0 +1,30 @@
+.coinpai_drop {
+    color: red;
+  }
+  
+  .coinpair_up {
+    color: green;
+  }
+  
+  .coinpair_container {
+    display: flex;
+    flex-direction: column;
+    height: 40vh;
+    overflow: auto;
+    margin-top: 5px;
+    border-top: solid 0.5px rgb(234, 236, 239);
+  }
+  .coinpair_container::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  .coinpair_container::-webkit-scrollbar-track {
+    margin: 30px 0px;
+  }
+  
+  .coinpair_container::-webkit-scrollbar-thumb {
+    background: #d7e1e8;
+    border-radius: 16px;
+    border-radius: 10px 10px;
+  }
+  

@@ -7,7 +7,7 @@ interface TradesProps {
   symbol: string;
 }
 
-const Trades = (props: TradesProps) => {
+const Trades: React.FC<TradesProps> = (props) => {
   const [data, setData] = useState<Trade[]>([]);
   const [symbol, setSymbol] = useState("");
 
