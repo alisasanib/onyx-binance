@@ -109,8 +109,8 @@ const Trades: React.FC<TradesProps> = (props) => {
         style={{
           display: "flex",
         }}>
-        <div className={styles.trade_header}>id</div>
-        <div className={styles.trade_header}>price</div>
+        <div className={styles.trade_header}>Trade ID</div>
+        <div className={styles.trade_header}>Price</div>
         <div className={styles.trade_header}>Quantity</div>
         <div className={styles.trade_header}>Time</div>
       </div>
