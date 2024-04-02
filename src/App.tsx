@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Grid } from "@mui/material";
+import Chart from "./components/Chart";
 import Trades from "./components/Trades";
 import CoinPairSearch from "./components/CoinPairSearch";
 import "./App.css";
@@ -10,8 +12,31 @@ function App() {
   };
   return (
     <div style={{ display: "flex", flexWrap: "wrap" }}>
-      <Trades symbol={symbol} />
-      <CoinPairSearch onSelectSymbol={handleChangeSymbol} />
+      <Grid
+        sx={{ marginTop: 0 }}
+        className='content-container'
+        container
+        spacing={4}>
+        <Grid
+          item
+          xl={3}
+          lg={12}
+          md={12}
+          xs={12}>
+          <div>
+            <Trades symbol={symbol} />
+            <CoinPairSearch onSelectSymbol={handleChangeSymbol} />
+          </div>
+        </Grid>
+        <Grid
+          item
+          xl={9}
+          lg={12}
+          md={12}
+          xs={12}>
+          <Chart symbol={symbol} />
+        </Grid>
+      </Grid>
     </div>
   );
 }
