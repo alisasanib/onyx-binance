@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { Pair } from "../../types";
 import styles from "./CoinPairSearch.module.css";
 
-
 interface CoinPairSearchProps {
   onSelectSymbol: (p: string) => void;
 }
@@ -45,7 +44,7 @@ const CoinPairSearch: React.FC<CoinPairSearchProps> = (props) => {
 
   return (
     <div className={styles.coinpair_container}>
-      <div className={styles.coinpair_input} style={{ position: "sticky", top: 0, background: "rgb(22, 26, 30)" }}>
+      <div className={styles.coinpair_input}>
         <TextField
           onChange={handleSearchPairCoin}
           id='outlined-search'
@@ -72,7 +71,7 @@ const CoinPairSearch: React.FC<CoinPairSearchProps> = (props) => {
             <div
               key={pair.symbol}
               data-testid='coinpair-row'
-              style={{ display: "flex", fontSize: "12px", gap: 4 }}>
+              className={styles.coinpair_row}>
               <div
                 onClick={() => props.onSelectSymbol(pair.symbol)}
                 style={{ width: "30%", cursor: "pointer" }}>

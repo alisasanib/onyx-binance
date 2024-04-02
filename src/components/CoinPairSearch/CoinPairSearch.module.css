@@ -33,3 +33,14 @@
   border-radius: 16px;
   border-radius: 10px 10px;
 }
+.coinpair_input {
+  position: sticky;
+  top: 0;
+  background: rgb(22, 26, 30);
+}
+
+.coinpair_row {
+  display: flex;
+  font-size: 12px;
+  gap: 4;
+}
