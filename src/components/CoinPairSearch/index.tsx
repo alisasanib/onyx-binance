@@ -41,12 +41,12 @@ const CoinPairSearch: React.FC<CoinPairSearchProps> = (props) => {
             "data-testid": "coinpair-search",
             style: {
               color: "white",
-              fontFamily: "IBM Plex Sans",
+              fontSize: "12px",
               background: "rgb(43, 49, 57)",
             },
           }}
           InputLabelProps={{
-            style: { color: "#fff", borderColor: "white" },
+            style: { color: "#fff", borderColor: "white", fontSize: "14px" },
           }}
         />
       </div>
