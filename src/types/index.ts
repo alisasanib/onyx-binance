@@ -56,3 +56,18 @@ export type Trade = {
   quoteQty: string;
   time: number | string;
 };
+
+export type HistoricalDataType = [
+  number,
+  string,
+  string,
+  string,
+  string,
+  string,
+  number,
+  string,
+  number,
+  string,
+  string,
+  string
+];
