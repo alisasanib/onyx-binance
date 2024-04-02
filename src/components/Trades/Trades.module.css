@@ -1,0 +1,31 @@
+.trade_row {
+  width: 25%;
+  font-size: 12px;
+  font-weight: 400;
+}
+.trade_header {
+  color: rgb(132, 142, 156);
+  width: 25%;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.trade_title {
+  color: rgb(240, 185, 11);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.trades_container::-webkit-scrollbar {
+  width: 4px;
+}
+
+.trades_container::-webkit-scrollbar-track {
+  margin: 30px 0px;
+}
+
+.trades_container::-webkit-scrollbar-thumb {
+  background: #d7e1e8;
+  border-radius: 16px;
+  border-radius: 10px 10px;
+}
