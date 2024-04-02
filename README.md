@@ -1,30 +1,28 @@
-# React + TypeScript + Vite
+# Onyx Frontend task
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the take Home Test for Onyx capital group showcasing an online trades list by connecting to Binance websocket and rest endpoints. It also displays the price chart and provides an option for the user to switch between different coin pairs. It automatically update the trades list and chart values. In addition to live data, the chart also handles historical data if you drag to the left. The project is deployed to [https://onyx-binance.vercel.app](https://onyx-binance.vercel.app) by vercel. Tests have also added for three components that we have: Trades, Chart, CoinPairSearch. The project supports responsiveness and adjust components on different devices.
 
-Currently, two official plugins are available:
+## Available Scripts
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+In the project directory, you can run:
 
-## Expanding the ESLint configuration
+### `npm run dev`
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Runs the app in the development mode.
+Open [http://localhost:5173](http://localhost:5173) to view it in your browser.
 
-- Configure the top-level `parserOptions` property like this:
+### `npm run test`
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+Launches the test runner in the interactive watch mode.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### `npm run build`
+
+Builds the app for production to the `dist` folder.
+
+## Further improvements
+
+- Supporting more functionalities in the chart such as switching between different types of charts, changing time frames, measuring values etc, making chart full-screen.
+
+- Reflecting selected coin pair in the url and create a 404 page to serve unknown coin pairs/urls.
+
+- Improve the styling, UI/UX, and responsiveness, and error handling
